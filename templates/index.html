@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lung Cancer Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            margin: 0;
+            padding: 0;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 80px auto;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        h2 {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #6a0572;
+        }
+
+        p.description {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        form input[type="file"] {
+            padding: 12px;
+            border: 2px dashed #6a0572;
+            border-radius: 12px;
+            background-color: #fbeeff;
+            width: 85%;
+            margin: 20px 0;
+        }
+
+        input[type="submit"] {
+            background-color: #ff5e62;
+            border: none;
+            color: white;
+            padding: 14px 30px;
+            font-size: 17px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #d72357;
+            transform: scale(1.05);
+        }
+
+        h3 {
+            margin-top: 30px;
+            color: #00b894;
+            font-size: 26px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 14px;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px #00000050;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Lung Cancer Prediction</h2>
+        <p class="description">
+            Upload a lung CT scan image below, and our intelligent system will analyze it to predict the condition as 
+            <strong>Normal</strong>, <strong>Malignant</strong>, or <strong>Benign</strong>. This tool aims to assist in early 
+            lung cancer diagnosis using machine learning technology.
+        </p>
+
+        <form action="/predict" method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required><br>
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if result %}
+        <h3>Prediction: {{ result }}</h3>
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>🚀 Powered by AI | Built with Flask + CNN + SVM + Random Forest</p>
+    </footer>
+</body>
+</html>
